@@ -44,7 +44,7 @@ function App() {
       <div className={s.sidebar}>
         {!loading && <Sidebar tags={createTags(courses)} selectedTag={currentTag} onTagClick={setCurrentTag} />}
       </div>
-      <div>
+      <div className={s.courses}>
         <CoursesListContainer filterValue={currentTag} courses={courses} />
       </div>
     </div>
