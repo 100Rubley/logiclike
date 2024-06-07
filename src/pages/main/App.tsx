@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
 import s from './App.module.scss'
-import { fetchAPI } from '../../api/fetchCourses/fetchCourses'
 import { CoursesListContainer } from '../../components/CoursesList/CoursesListContainer'
 import { Sidebar } from '../../components/Sidebar/Sidebar'
 import './Normalize.css'
+import { fetchAPI } from '../../common/fetchAPI'
+import { ALL, API_URL } from '../../common/constants'
+import { createTags } from '../../common/utils'
 
 export interface ICoursesAPI {
   name: string,
@@ -13,16 +15,7 @@ export interface ICoursesAPI {
   tags: Array<string>
 }
 
-export const ALL = "Все темы"
-
-const createTags = (courses: ICoursesAPI[]) => {
-  return [ALL, ...new Set(courses.map(({ tags }) => tags).flat())]
-}
-
-const API_URL = 'https://logiclike.com/docs/courses.json'
-
 function App() {
-
   const [courses, setCourses] = useState<ICoursesAPI[] | null>(null)
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
