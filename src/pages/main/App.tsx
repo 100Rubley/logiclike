@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
-import './App.css'
+import s from './App.module.scss'
 import { fetchAPI } from '../../api/fetchCourses/fetchCourses'
-import { CoursesList } from '../../components/CoursesList/CoursesList'
+import { CoursesListContainer } from '../../components/CoursesList/CoursesListContainer'
+import { Sidebar } from '../../components/Sidebar/Sidebar'
+import './Normalize.css'
 
 export interface ICoursesAPI {
   name: string,
@@ -20,24 +22,32 @@ const createTags = (courses: ICoursesAPI[]) => {
 const API_URL = 'https://logiclike.com/docs/courses.json'
 
 function App() {
-  // todo можно ошибку обработать
+
   const [courses, setCourses] = useState<ICoursesAPI[] | null>(null)
   const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
   const [currentTag, setCurrentTag] = useState<string>(ALL)
 
   useEffect(() => {
     setLoading(true)
-    fetchAPI<ICoursesAPI[]>(API_URL).then(res => setCourses(res)).finally(() => setLoading(false))
+    fetchAPI<ICoursesAPI[]>(API_URL)
+      .then(res => setCourses(res))
+      .catch(() => setError(true)) // можно обработать и вывести текст ошибки, если есть такая необходимость
+      .finally(() => setLoading(false))
   }, [])
 
   if (!courses) return null
+  if (error) return <>Что-то пошло не так!</>
 
   return (
-    <>
-      {!loading && <div>{createTags(courses).map(tag => <div onClick={() => setCurrentTag(tag)}>{tag}</div>)}</div>}
-      =======================
-      <CoursesList filterValue={currentTag} courses={courses} />
-    </>
+    <div className={s.wrapper}>
+      <div className={s.sidebar}>
+        {!loading && <Sidebar tags={createTags(courses)} selectedTag={currentTag} onTagClick={setCurrentTag} />}
+      </div>
+      <div>
+        <CoursesListContainer filterValue={currentTag} courses={courses} />
+      </div>
+    </div>
   )
 }
 
