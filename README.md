@@ -1,30 +1,27 @@
-# React + TypeScript + Vite
+# Тестовое задание в Logiclike
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Задание:
+Существует API эндпоинт 
+GET https://logiclike.com/docs/courses.json
 
-Currently, two official plugins are available:
+API эндпоинт возвращает список образовательных курсов платформы. Каждый курс имеет “тэги”, темы к которым этот курс относится. Например курс шахматы относится к темам “Головоломки”, “Шахматы” и “Логика и мышление”. 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Ваша задача разработать простую страницу, согласно макету, которая выводит список курсов и позволяет отфильтровать курсы по выбранной теме(tags). Весь контент, включая список тем должен формироваться динамически исходя из ответа от бэкэнда.
 
-## Expanding the ESLint configuration
+Макет: https://www.figma.com/file/gngIKlPiSuWmtoJPIfWHs8/Interview-Frontend?type=design&node-id=711-535&mode=design&t=RUg2M0Dhe5nPRGyb-4
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Поведение на разных разрешениях экрана показано в виде отдельного фрейма. Блок с “тэгами” является фиксированным по ширине. Блок справа занимает все оставшееся место. В одной строчке выводится ровно 3 курса, которые делят между собой доступное место.
+Требования:
+Использовать react, typescript, css(можно с любым препроцессором и/или css modules)
+pixel perfect
+Ожидаем, что код будет разбит на компоненты
+Не стоит использовать стейт менеджеры(redux, zustand, mobx, ….) и не стоит использовать контекст. В задаче можно обойтись локальным состоянием ;)
+Поддержка браузеров: код должен работать в хроме последней версии
+Код должен быть размещен в codesandbox, либо в репозитории на одной из платформ: github/gitlab/bitbucket
+Уделите внимание оптимизации кода, код не должен делать лишних перерендеров, которых можно было бы избежать 
 
-- Configure the top-level `parserOptions` property like this:
+## Локальный запуск проекта
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- склонировать репу
+- перейти в папку проекта
+- выполнить команду "npm run dev"
