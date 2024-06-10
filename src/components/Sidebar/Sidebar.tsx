@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import s from './Sidebar.module.scss'
-import { v4 as uuid } from 'uuid';
-import { clsx } from 'clsx';
+import { SidebarItem } from "../SidebarItem/SidebarItem";
+import { v4 as uuid } from "uuid";
 
 interface ISidebarProps {
   tags: string[];
@@ -10,9 +10,11 @@ interface ISidebarProps {
 }
 
 export const Sidebar = ({ tags, selectedTag, onTagClick }: ISidebarProps) => {
-  return tags.map(tag =>
-    <div className={clsx(s.tag, { [s.selected]: tag === selectedTag })} onClick={() => onTagClick(tag)} key={uuid()}>
-      {tag}
+  return (
+    <div className={s.sidebar}>
+      {tags.map(tag =>
+        <SidebarItem isSelected={selectedTag === tag} tag={tag} onTagClick={onTagClick} key={uuid()}/>
+      )}
     </div>
   )
 }

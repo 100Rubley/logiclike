@@ -1,4 +1,6 @@
-import { ICoursesAPI } from "../../pages/main/App"
+
+import { ICoursesAPI } from "../../common/types"
+import { Course } from "../Course/Course"
 import s from "./CoursesList.module.scss"
 
 interface ICoursesListProps {
@@ -6,14 +8,13 @@ interface ICoursesListProps {
 }
 
 export const CoursesList = ({ courses }: ICoursesListProps) => {
-  return courses.map(({ name, id, image, bgColor }) =>
-    <div className={s.wrapper} key={id}>
-      <div className={s.imageWrapper} style={{ backgroundColor: bgColor }}>
-        <img src={image} alt="Course_pic" className={s.image} />
-      </div>
-
-      <div className={s.courseName}>
-        {name}
-      </div>
-    </div>)
+  return (
+    <div className={s.courses}>
+      {
+        courses.map(({ name, id, image, bgColor }) => (
+          <Course name={name} image={image} bgColor={bgColor} key={id} />
+        ))
+      }
+    </div>
+  )
 }

@@ -1,5 +1,5 @@
 import { ALL } from "../../common/constants";
-import { ICoursesAPI } from "../../pages/main/App";
+import { ICoursesAPI } from "../../common/types";
 import { CoursesList } from "./CoursesList";
 
 interface ICoursesListContainerProps {

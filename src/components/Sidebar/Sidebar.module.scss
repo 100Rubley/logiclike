@@ -1,16 +1,6 @@
-.tag {
-  color: #39414b;
-  font-family: Nunito;
-  font-size: 18px;
-  font-weight: 800;
-  line-height: 18px;
-  letter-spacing: -0.1px;
+.sidebar {
+  height: fit-content;
+  border: 1px solid #cfcfe4;
+  border-radius: 18px;
   padding: 12px;
-  cursor: pointer;
-
-  &.selected {
-    background-color: #5FBF77;
-    border-radius: 12px;
-    color: white;
-  }
 }

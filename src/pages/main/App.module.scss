@@ -3,18 +3,4 @@
   display: grid;
   grid-template-columns: 264px auto;
   gap: 24px;
-
-  .sidebar {
-    height: fit-content;
-    border: 1px solid #cfcfe4;
-    border-radius: 18px;
-    padding: 12px;
-  }
-
-  .courses {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-    height: fit-content;
-  }
 }
